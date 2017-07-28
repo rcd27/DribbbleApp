@@ -1,7 +1,11 @@
 package rcd27.github.com.dribbbleapp.view;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.List;
 
 import rcd27.github.com.dribbbleapp.R;
 import rcd27.github.com.dribbbleapp.model.Cheeses;
@@ -42,8 +48,8 @@ public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.
         //TODO сверстать элемент списка
         listAdapter = new ArrayAdapter<>(
                 getActivity(),
-                R.layout.simple_list_item_1,
-                R.id.text_view_1,
+                R.layout.list_item_cardview,
+                R.id.card_view_text_description,
                 Cheeses.randomList(LIST_ITEM_COUNT)
         );
         shotsListView.setAdapter(listAdapter);
