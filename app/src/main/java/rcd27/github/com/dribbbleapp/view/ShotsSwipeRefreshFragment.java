@@ -45,7 +45,8 @@ public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //TODO сверстать элемент списка
+        //TODO добавить поддержку картинок.
+        //возможно, придётся переделывать через RecyclerView - дешевле в плане разработки.
         listAdapter = new ArrayAdapter<>(
                 getActivity(),
                 R.layout.list_item_cardview,
