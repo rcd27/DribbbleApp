@@ -2,6 +2,7 @@ package rcd27.github.com.dribbbleapp.view;
 
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import rcd27.github.com.dribbbleapp.R;
 import rcd27.github.com.dribbbleapp.model.Cheeses;
+import rcd27.github.com.dribbbleapp.model.Shot;
 
 public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.com.dribbbleapp.view.View {
     private static final int LIST_ITEM_COUNT = 50;
@@ -27,7 +29,7 @@ public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private ListView shotsListView;
-    private ArrayAdapter<String> listAdapter;
+    private ShotListAdapter listAdapter;
 
     @Nullable
     @Override
@@ -47,12 +49,10 @@ public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.
 
         //TODO добавить поддержку картинок.
         //возможно, придётся переделывать через RecyclerView - дешевле в плане разработки.
-        listAdapter = new ArrayAdapter<>(
-                getActivity(),
-                R.layout.list_item_cardview,
-                R.id.card_view_text_description,
-                Cheeses.randomList(LIST_ITEM_COUNT)
-        );
+        listAdapter = new ShotListAdapter(getContext());
+        //TODO NEXT: замокать Shot vo, чтобы тот нормально отображался
+        listAdapter.add(new Shot("Лес", "Ну очень красивый лес"));
+
         shotsListView.setAdapter(listAdapter);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -69,10 +69,10 @@ public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.
     @Override
     public void update() {
         Log.d("eventLog", "update: refreshInitiated");
-        listAdapter.clear();
-        for (String cheese : Cheeses.randomList(LIST_ITEM_COUNT)) {
-            listAdapter.add(cheese);
-        }
+//        listAdapter.clear();
+//        for (String cheese : Cheeses.randomList(LIST_ITEM_COUNT)) {
+//            listAdapter.add(cheese);
+//        }
         swipeRefreshLayout.setRefreshing(false);
     }
 }
