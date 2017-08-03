@@ -4,11 +4,14 @@ package rcd27.github.com.dribbbleapp.presenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import rcd27.github.com.dribbbleapp.model.ApiModule;
+import rcd27.github.com.dribbbleapp.DribbbleApplication;
+import rcd27.github.com.dribbbleapp.model.DribbbleApi;
 import rcd27.github.com.dribbbleapp.model.ShotDataTransferObject;
 import rcd27.github.com.dribbbleapp.model.ShotVisualObject;
 import rcd27.github.com.dribbbleapp.view.View;
@@ -16,14 +19,17 @@ import rcd27.github.com.dribbbleapp.view.View;
 public class ShotsFragmentPresenter implements Presenter {
     private View view;
 
+    @Inject
+    public DribbbleApi dribbbleApi;
+
     public ShotsFragmentPresenter(View view) {
         this.view = view;
+        DribbbleApplication.getAppComponent().inject(this);
     }
 
     @Override
     public void updateActual() {
-        ApiModule
-                .getDribbleApi()
+        dribbbleApi
                 .getShots("week")
                 .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                 .map(new CustomMapper())
