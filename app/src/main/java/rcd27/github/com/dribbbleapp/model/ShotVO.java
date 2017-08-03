@@ -6,15 +6,15 @@ package rcd27.github.com.dribbbleapp.model;
 
 import android.support.annotation.NonNull;
 
-public class Shot {
+public class ShotVO {
 
     public final String imageUrl;
     public final String title;
     public final String description;
 
-    public Shot(@NonNull String imageUrl,
-                @NonNull String title,
-                @NonNull String description) {
+    public ShotVO(@NonNull String imageUrl,
+                  @NonNull String title,
+                  @NonNull String description) {
         this.imageUrl = imageUrl;
         this.title = title;
         this.description = description;

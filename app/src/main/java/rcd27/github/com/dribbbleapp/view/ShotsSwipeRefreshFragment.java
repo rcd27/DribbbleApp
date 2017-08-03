@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import rcd27.github.com.dribbbleapp.R;
-import rcd27.github.com.dribbbleapp.model.Shot;
+import rcd27.github.com.dribbbleapp.model.ShotVO;
 
 public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.com.dribbbleapp.view.View {
     private static final int LIST_ITEM_COUNT = 50;
@@ -52,7 +52,7 @@ public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.
         update();
     }
 
-    //TODO след.шаг: принимать в качестве вход. элемента List<Shot>
+    //TODO след.шаг: принимать в качестве вход. элемента List<ShotVO>
     @Override
     public void update() {
         if (!swipeRefreshLayout.isRefreshing()) {
@@ -60,7 +60,7 @@ public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.
         }
         Log.d("eventLog", "update: refreshInitiated");
         listAdapter.clear();
-        listAdapter.add(new Shot("https://cdn.dribbble.com/users/371094/screenshots/3697595/koi.jpg",
+        listAdapter.add(new ShotVO("https://cdn.dribbble.com/users/371094/screenshots/3697595/koi.jpg",
                 "Koi",
                 "Против течения"));
         swipeRefreshLayout.setRefreshing(false);
