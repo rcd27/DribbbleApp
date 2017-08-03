@@ -7,7 +7,7 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface RetrofitRequest {
+public interface DribbbleApi {
     @GET("/v1/shots")
     Single<List<ShotDataTransferObject>> getShots(@Query("timeframe") String listCommand);
 }

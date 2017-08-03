@@ -19,7 +19,7 @@ public class ApiModule {
     private static final String AUTH = "Bearer d40d9ad2e7a946e27e922ac609b84ff86a91223585208473a821aa394c602003";
     private static final String BASE_ULR = "https://api.dribbble.com";
 
-    public static RetrofitRequest getDribbleApi() {
+    public static DribbbleApi getDribbleApi() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient().newBuilder();
         HttpLoggingInterceptor networkLogger = new HttpLoggingInterceptor();
         networkLogger.setLevel(HttpLoggingInterceptor.Level.BASIC);
@@ -43,6 +43,6 @@ public class ApiModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
 
-        return retrofit.create(RetrofitRequest.class);
+        return retrofit.create(DribbbleApi.class);
     }
 }

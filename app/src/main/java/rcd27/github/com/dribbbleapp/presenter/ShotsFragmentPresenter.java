@@ -14,7 +14,7 @@ import rcd27.github.com.dribbbleapp.model.ShotVisualObject;
 import rcd27.github.com.dribbbleapp.view.View;
 
 public class ShotsFragmentPresenter implements Presenter {
-    View view;
+    private View view;
 
     public ShotsFragmentPresenter(View view) {
         this.view = view;
@@ -26,20 +26,7 @@ public class ShotsFragmentPresenter implements Presenter {
                 .getDribbleApi()
                 .getShots("week")
                 .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .map(new Function<List<ShotDataTransferObject>, List<ShotVisualObject>>() {
-                    @Override
-                    public List<ShotVisualObject>
-                    apply(@NonNull List<ShotDataTransferObject> shotDataTransferObjects)
-                            throws Exception {
-                        List<ShotVisualObject> result = new ArrayList<>();
-                        for (ShotDataTransferObject shotDto : shotDataTransferObjects) {
-                            result.add(new ShotVisualObject(shotDto.getImages().get("normal"),
-                                    shotDto.getTitle(),
-                                    shotDto.getDescription()));
-                        }
-                        return result;
-                    }
-                })
+                .map(new CustomMapper())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess(new Consumer<List<ShotVisualObject>>() {
                     @Override
@@ -48,5 +35,30 @@ public class ShotsFragmentPresenter implements Presenter {
                     }
                 })
                 .subscribe();
+    }
+
+    private class CustomMapper
+            implements Function<List<ShotDataTransferObject>, List<ShotVisualObject>> {
+
+        @Override
+        public List<ShotVisualObject> apply(@NonNull List<ShotDataTransferObject>
+                                                    shotDataTransferObjects) throws Exception {
+            List<ShotVisualObject> result = new ArrayList<>();
+            for (ShotDataTransferObject shotDto : shotDataTransferObjects) {
+                if (!shotDto.isAnimated()) {
+                    //TODO напсать тест "Что, если нет "hidpi".
+                    try {
+                        result.add(new ShotVisualObject(shotDto.getImages().get("hidpi"),
+                                shotDto.getTitle(),
+                                shotDto.getDescription()));
+                    } catch (Exception e) {
+                        result.add(new ShotVisualObject(shotDto.getImages().get("normal"),
+                                shotDto.getTitle(),
+                                shotDto.getDescription()));
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
