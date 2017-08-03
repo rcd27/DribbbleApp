@@ -1,19 +1,21 @@
 package rcd27.github.com.dribbbleapp.model;
 
 /*
- * Мок visual object для адаптера ListView.
+ * Visual object для предоставления адаптеру и отображения shot'ов.
  */
 
-import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 
 public class Shot {
 
-    public final Drawable shotImage;
+    public final String imageUrl;
     public final String title;
     public final String description;
 
-    public Shot(Drawable shotImage, String title, String description) {
-        this.shotImage = shotImage;
+    public Shot(@NonNull String imageUrl,
+                @NonNull String title,
+                @NonNull String description) {
+        this.imageUrl = imageUrl;
         this.title = title;
         this.description = description;
     }
