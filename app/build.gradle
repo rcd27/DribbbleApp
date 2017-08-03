@@ -17,6 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 ext {
@@ -25,6 +28,7 @@ ext {
     retrofit_version = '2.3.0'
     rx_version = '2.1.2'
 }
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -40,12 +44,11 @@ dependencies {
 
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    compile "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile "io.reactivex.rxjava2:rxjava:$rx_version"
-
 
     testCompile 'junit:junit:4.12'
 }

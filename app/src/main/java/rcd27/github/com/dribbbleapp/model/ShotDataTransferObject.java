@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Map;
 
-public class ShotDTO {
+public class ShotDataTransferObject {
     @SerializedName("id")
     private String id;
 

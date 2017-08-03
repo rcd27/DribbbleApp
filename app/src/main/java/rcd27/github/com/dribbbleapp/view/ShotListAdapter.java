@@ -14,9 +14,9 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import rcd27.github.com.dribbbleapp.R;
-import rcd27.github.com.dribbbleapp.model.ShotVO;
+import rcd27.github.com.dribbbleapp.model.ShotVisualObject;
 
-public class ShotListAdapter extends ArrayAdapter<ShotVO> {
+public class ShotListAdapter extends ArrayAdapter<ShotVisualObject> {
     public ShotListAdapter(@NonNull Context context) {
         super(context, R.layout.list_item_cardview);
     }
@@ -24,7 +24,7 @@ public class ShotListAdapter extends ArrayAdapter<ShotVO> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        ShotVO shot = getItem(position);
+        ShotVisualObject shot = getItem(position);
         assert shot != null;
 
         if (convertView == null) {

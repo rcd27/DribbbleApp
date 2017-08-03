@@ -2,6 +2,7 @@ package rcd27.github.com.dribbbleapp.view;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,16 +12,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import rcd27.github.com.dribbbleapp.R;
-import rcd27.github.com.dribbbleapp.model.ShotVO;
+import java.util.List;
 
-public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.com.dribbbleapp.view.View {
+import rcd27.github.com.dribbbleapp.R;
+import rcd27.github.com.dribbbleapp.model.ShotVisualObject;
+import rcd27.github.com.dribbbleapp.presenter.Presenter;
+import rcd27.github.com.dribbbleapp.presenter.ShotsFragmentPresenter;
+
+public class ShotsSwipeRefreshFragment extends Fragment
+        implements rcd27.github.com.dribbbleapp.view.View {
     private static final int LIST_ITEM_COUNT = 50;
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private ListView shotsListView;
     private ShotListAdapter listAdapter;
+
+    Presenter presenter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        presenter = new ShotsFragmentPresenter(this);
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
@@ -43,26 +57,23 @@ public class ShotsSwipeRefreshFragment extends Fragment implements rcd27.github.
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //TODO пробросить через презентер
-                //presenter.getListAndUpdate
-                update();
+                presenter.updateActual();
             }
         });
 
-        update();
+        presenter.updateActual();
     }
 
-    //TODO след.шаг: принимать в качестве вход. элемента List<ShotVO>
     @Override
-    public void update() {
+    public void update(@NonNull List<ShotVisualObject> shots) {
         if (!swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.setRefreshing(true);
         }
         Log.d("eventLog", "update: refreshInitiated");
         listAdapter.clear();
-        listAdapter.add(new ShotVO("https://cdn.dribbble.com/users/371094/screenshots/3697595/koi.jpg",
-                "Koi",
-                "Против течения"));
+        for (ShotVisualObject shot : shots) {
+            listAdapter.add(shot);
+        }
         swipeRefreshLayout.setRefreshing(false);
     }
 }
