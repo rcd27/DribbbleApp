@@ -59,7 +59,7 @@
                 <TextView
                     android:id="@+id/card_view_text_description"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50sp"
                     android:gravity="center_vertical"
                     android:paddingBottom="16dp"
                     android:paddingEnd="16dp"
@@ -67,7 +67,7 @@
                     android:textAppearance="?android:textAppearanceLarge"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"
-                    tools:text="Description" />
+                    tools:text="1234567890123456789012345678901234567890123456789012345678901234567890123456789013245678901234567890" />
             </LinearLayout>
 
         </FrameLayout>

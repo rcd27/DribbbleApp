@@ -41,8 +41,16 @@ public class ShotListAdapter extends ArrayAdapter<ShotVisualObject> {
         ((TextView) convertView.findViewById(R.id.card_view_text_title))
                 .setText(shot.title);
         ((TextView) convertView.findViewById(R.id.card_view_text_description))
-                .setText(shot.description);
+                .setText(prepareDescription(shot.description));
 
         return convertView;
+    }
+
+    private String prepareDescription(@NonNull String stringToPrepare) {
+        String result = stringToPrepare.replace("<p>", "").replace("</p>", "");
+        if (result.length() >= 96) {
+            return result.substring(0, 93).concat("...");
+        }
+        return result;
     }
 }
