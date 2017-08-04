@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,13 +65,10 @@ public class ShotsSwipeRefreshFragment extends Fragment
 
     @Override
     public void update(@NonNull List<ShotVisualObject> shots) {
-        if (!swipeRefreshLayout.isRefreshing()) {
-            swipeRefreshLayout.setRefreshing(true);
-        }
-        Log.d("eventLog", "update: refreshInitiated");
         listAdapter.clear();
         for (ShotVisualObject shot : shots) {
             listAdapter.add(shot);
+            listAdapter.notifyDataSetChanged();
         }
         swipeRefreshLayout.setRefreshing(false);
     }
