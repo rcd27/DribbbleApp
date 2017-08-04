@@ -28,7 +28,7 @@ public class ShotsFragmentPresenter implements Presenter {
     //TODO пробросить через даггер
     public ShotsFragmentPresenter(View view) {
         this.view = view;
-        DribbbleApplication.getAppComponent().inject(this);
+        DribbbleApplication.getInstance().getAppComponent().inject(this);
     }
 
     @Override

@@ -17,26 +17,30 @@ import rcd27.github.com.dribbbleapp.di.DaggerAppComponent;
  */
 
 public class DribbbleApplication extends Application {
-    private final static String TAG = "eventLog";
 
-    private static AppComponent appComponent;
+    private static DribbbleApplication instance;
+
+    public static DribbbleApplication getInstance() {
+        return instance;
+    }
+
+    //TODO сделать сабкомпонент для ShotSwipeRefreshFragment
+    private AppComponent appComponent;
 
     @Override
     public void onCreate() {
-        Log.d(TAG, "onCreate: application created.");
         super.onCreate();
+        instance = this;
+        initDagger();
+    }
+
+    private void initDagger() {
         appComponent = DaggerAppComponent.builder()
                 .apiModule(new ApiModule(getCacheDir()))
                 .build();
     }
 
-    @Override
-    public void onTerminate() {
-        Log.d(TAG, "onTerminate: application terminated");
-        super.onTerminate();
-    }
-
-    public static AppComponent getAppComponent() {
+    public AppComponent getAppComponent() {
         return appComponent;
     }
 }

@@ -24,6 +24,8 @@ public class ShotsSwipeRefreshFragment extends Fragment
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private ListView shotsListView;
+
+    //TODO FIXME https://habrahabr.ru/post/334710/
     private ShotListAdapter listAdapter;
 
     Presenter presenter;
