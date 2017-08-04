@@ -34,7 +34,7 @@ public class ShotsFragmentPresenter implements Presenter {
     @Override
     public void updateActual() {
         dribbbleApi
-                .getShots("ever")
+                .getShots()
                 .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                 .map(new CustomMapper())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -56,15 +56,15 @@ public class ShotsFragmentPresenter implements Presenter {
             List<ShotVisualObject> result = new ArrayList<>();
             for (ShotDataTransferObject shotDto : shotDataTransferObjects) {
                 //TODO написать тесты
-                if (!shotDto.isAnimated()) {
-                    if (shotDto.getImages().get(HIDPI) != null) {
-                        result.add(new ShotVisualObject(shotDto.getImages().get(HIDPI),
-                                shotDto.getTitle(),
-                                shotDto.getDescription()));
+                if (!shotDto.isAnimated) {
+                    if (shotDto.images.get(HIDPI) != null) {
+                        result.add(new ShotVisualObject(shotDto.images.get(HIDPI),
+                                shotDto.title,
+                                shotDto.description));
                     } else {
-                        result.add(new ShotVisualObject(shotDto.getImages().get(NORMAL),
-                                shotDto.getTitle(),
-                                shotDto.getDescription()));
+                        result.add(new ShotVisualObject(shotDto.images.get(NORMAL),
+                                shotDto.title,
+                                shotDto.description));
                     }
                 }
             }

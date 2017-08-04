@@ -1,97 +1,58 @@
 package rcd27.github.com.dribbbleapp.model;
 
 
+import android.support.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Map;
 
 public class ShotDataTransferObject {
     @SerializedName("id")
-    private String id;
+    public final String id;
 
     @SerializedName("title")
-    private String title;
+    public final String title;
 
     @SerializedName("description")
-    private String description;
+    public final String description;
 
     @SerializedName("width")
-    private int width;
+    public final int width;
 
     @SerializedName("height")
-    private int height;
+    public final int height;
 
     @SerializedName("images")
-    private Map<String, String> images;
+    public final Map<String, String> images;
 
-    @SerializedName("animated")
-    private boolean animated;
+    @SerializedName("isAnimated")
+    public final boolean isAnimated;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
+    public ShotDataTransferObject(String id,
+                                  String title,
+                                  @Nullable String description,
+                                  int width,
+                                  int height,
+                                  Map<String, String> images,
+                                  boolean isAnimated) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
         this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
         this.height = height;
-    }
-
-    public Map<String, String> getImages() {
-        return images;
-    }
-
-    public void setImages(Map<String, String> images) {
         this.images = images;
+        this.isAnimated = isAnimated;
     }
 
-    public boolean isAnimated() {
-        return animated;
-    }
-
-    public void setAnimated(boolean animated) {
-        this.animated = animated;
-    }
-
-    @Override
     public String toString() {
-        return  "--------------------------------" +
+        return "--------------------------------" +
                 "\nID: " + id +
                 "\nTitle: " + title +
                 "\nDescription: " + description +
                 "\nWidth: " + width +
                 "\nHeight: " + height +
                 "\nImages: " + images.toString() +
-                "\nAnimated: " + animated;
+                "\nAnimated: " + isAnimated;
     }
 }

@@ -9,5 +9,5 @@ import retrofit2.http.Query;
 
 public interface DribbbleApi {
     @GET("/v1/shots")
-    Single<List<ShotDataTransferObject>> getShots(@Query("timeframe") String listCommand);
+    Single<List<ShotDataTransferObject>> getShots();
 }
