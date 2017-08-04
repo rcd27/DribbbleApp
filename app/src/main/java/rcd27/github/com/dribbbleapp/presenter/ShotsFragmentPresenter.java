@@ -20,7 +20,7 @@ public class ShotsFragmentPresenter implements Presenter {
     private static final String HIDPI = "hidpi";
     private static final String NORMAL = "normal";
 
-    private View view;
+    private final View view;
 
     @Inject
     public DribbbleApi dribbbleApi;
