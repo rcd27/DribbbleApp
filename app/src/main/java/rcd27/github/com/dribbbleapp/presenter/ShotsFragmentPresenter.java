@@ -17,11 +17,15 @@ import rcd27.github.com.dribbbleapp.model.ShotVisualObject;
 import rcd27.github.com.dribbbleapp.view.View;
 
 public class ShotsFragmentPresenter implements Presenter {
+    private static final String HIDPI = "hidpi";
+    private static final String NORMAL = "normal";
+
     private View view;
 
     @Inject
     public DribbbleApi dribbbleApi;
 
+    //TODO пробросить через даггер
     public ShotsFragmentPresenter(View view) {
         this.view = view;
         DribbbleApplication.getAppComponent().inject(this);
@@ -30,7 +34,7 @@ public class ShotsFragmentPresenter implements Presenter {
     @Override
     public void updateActual() {
         dribbbleApi
-                .getShots("week")
+                .getShots("ever")
                 .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                 .map(new CustomMapper())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -51,14 +55,14 @@ public class ShotsFragmentPresenter implements Presenter {
                                                     shotDataTransferObjects) throws Exception {
             List<ShotVisualObject> result = new ArrayList<>();
             for (ShotDataTransferObject shotDto : shotDataTransferObjects) {
+                //TODO написать тесты
                 if (!shotDto.isAnimated()) {
-                    //TODO напсать тест "Что, если нет "hidpi".
-                    try {
-                        result.add(new ShotVisualObject(shotDto.getImages().get("hidpi"),
+                    if (shotDto.getImages().get(HIDPI) != null) {
+                        result.add(new ShotVisualObject(shotDto.getImages().get(HIDPI),
                                 shotDto.getTitle(),
                                 shotDto.getDescription()));
-                    } catch (Exception e) {
-                        result.add(new ShotVisualObject(shotDto.getImages().get("normal"),
+                    } else {
+                        result.add(new ShotVisualObject(shotDto.getImages().get(NORMAL),
                                 shotDto.getTitle(),
                                 shotDto.getDescription()));
                     }

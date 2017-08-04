@@ -24,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class ApiModule {
 
+    private static final String AUTHORIZATION = "Authorization";
     private static final String AUTH = "Bearer d40d9ad2e7a946e27e922ac609b84ff86a91223585208473a821aa394c602003";
     private static final String BASE_ULR = "https://api.dribbble.com";
 
@@ -47,7 +48,9 @@ public class ApiModule {
             public Response intercept(@NonNull Chain chain) throws IOException {
                 Request original = chain.request();
                 Request.Builder requestBuilder = original.newBuilder()
-                        .header("Authorization", AUTH);
+                        .header(AUTHORIZATION, AUTH);
+                //TODO FIXME: если отсутствует интернет, приложение не грузит
+                //с диска, а просто валится.
                 Request request = requestBuilder.build();
                 return chain.proceed(request);
             }

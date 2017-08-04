@@ -20,7 +20,6 @@ import rcd27.github.com.dribbbleapp.presenter.ShotsFragmentPresenter;
 
 public class ShotsSwipeRefreshFragment extends Fragment
         implements rcd27.github.com.dribbbleapp.view.View {
-    private static final int LIST_ITEM_COUNT = 50;
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
