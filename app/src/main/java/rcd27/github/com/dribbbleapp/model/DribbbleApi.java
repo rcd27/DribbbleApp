@@ -8,6 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface DribbbleApi {
-    @GET("/v1/shots")
-    Single<List<ShotDataTransferObject>> getShots();
+    @GET("shots")
+    Single<List<ShotDataTransferObject>> getShots(@Query("page") int pageNumber,
+                                                  @Query("per_page") int shotsPerPage);
 }

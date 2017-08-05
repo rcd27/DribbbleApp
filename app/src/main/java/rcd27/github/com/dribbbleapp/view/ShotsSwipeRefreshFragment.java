@@ -28,7 +28,7 @@ public class ShotsSwipeRefreshFragment extends Fragment
     //TODO FIXME https://habrahabr.ru/post/334710/
     private ShotListAdapter listAdapter;
 
-    Presenter presenter;
+    private Presenter presenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

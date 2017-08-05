@@ -25,6 +25,10 @@ public class ShotsFragmentPresenter implements Presenter {
     @Inject
     public DribbbleApi dribbbleApi;
 
+    // Для переключения страниц. Можно использовать Link Header.
+    // см.: http://developer.dribbble.com/v1/#pagination
+    private int pageNumber = 1;
+
     //TODO пробросить через даггер
     public ShotsFragmentPresenter(View view) {
         this.view = view;
@@ -34,7 +38,7 @@ public class ShotsFragmentPresenter implements Presenter {
     @Override
     public void updateActual() {
         dribbbleApi
-                .getShots()
+                .getShots(pageNumber, 50)
                 .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                 .map(new CustomMapper())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -45,6 +49,7 @@ public class ShotsFragmentPresenter implements Presenter {
                     }
                 })
                 .subscribe();
+        pageNumber++;
     }
 
     private class CustomMapper

@@ -2,9 +2,8 @@ package rcd27.github.com.dribbbleapp;
 
 
 import android.app.Application;
-import android.util.Log;
 
-import rcd27.github.com.dribbbleapp.di.ApiModule;
+import rcd27.github.com.dribbbleapp.di.NetworkModule;
 import rcd27.github.com.dribbbleapp.di.AppComponent;
 import rcd27.github.com.dribbbleapp.di.DaggerAppComponent;
 
@@ -36,7 +35,7 @@ public class DribbbleApplication extends Application {
 
     private void initDagger() {
         appComponent = DaggerAppComponent.builder()
-                .apiModule(new ApiModule(getCacheDir()))
+                .networkModule(new NetworkModule(getCacheDir()))
                 .build();
     }
 
