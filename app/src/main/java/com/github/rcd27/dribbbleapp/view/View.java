@@ -9,6 +9,6 @@ import com.github.rcd27.dribbbleapp.model.objects.ShotVisualObject;
 
 public interface View {
 
-    void update(@NonNull List<ShotVisualObject> shots);
+    void showError(@NonNull String errorMessage);
 
 }

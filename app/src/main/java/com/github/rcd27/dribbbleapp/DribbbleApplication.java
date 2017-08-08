@@ -3,6 +3,7 @@ package com.github.rcd27.dribbbleapp;
 
 import android.app.Application;
 
+import com.github.rcd27.dribbbleapp.di.ModelModule;
 import com.github.rcd27.dribbbleapp.di.NetworkModule;
 import com.github.rcd27.dribbbleapp.di.AppComponent;
 import com.github.rcd27.dribbbleapp.di.DaggerAppComponent;
@@ -24,7 +25,7 @@ public class DribbbleApplication extends Application {
     }
 
     //TODO сделать сабкомпонент для ShotSwipeRefreshFragment
-    private AppComponent appComponent;
+    protected AppComponent appComponent;
 
     @Override
     public void onCreate() {
@@ -33,9 +34,10 @@ public class DribbbleApplication extends Application {
         initDagger();
     }
 
-    private void initDagger() {
+    protected void initDagger() {
         appComponent = DaggerAppComponent.builder()
                 .networkModule(new NetworkModule(getCacheDir()))
+                .modelModule(new ModelModule())
                 .build();
     }
 

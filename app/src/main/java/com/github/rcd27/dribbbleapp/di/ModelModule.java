@@ -8,6 +8,8 @@ import dagger.Provides;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+
+import com.github.rcd27.dribbbleapp.model.mappers.RequiredShotsMapper;
 import com.github.rcd27.dribbbleapp.other.Const;
 
 @Module
@@ -25,5 +27,11 @@ public class ModelModule {
     @Named(Const.IO_THREAD)
     Scheduler provideIOScheduler() {
         return Schedulers.io();
+    }
+
+    @Provides
+    @Singleton
+    RequiredShotsMapper provideMapper() {
+        return new RequiredShotsMapper();
     }
 }

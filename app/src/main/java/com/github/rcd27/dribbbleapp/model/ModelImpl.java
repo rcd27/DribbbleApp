@@ -1,6 +1,11 @@
 package com.github.rcd27.dribbbleapp.model;
 
 
+import com.github.rcd27.dribbbleapp.DribbbleApplication;
+import com.github.rcd27.dribbbleapp.model.net.DribbbleApi;
+import com.github.rcd27.dribbbleapp.model.objects.ShotDataTransferObject;
+import com.github.rcd27.dribbbleapp.other.Const;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,10 +14,6 @@ import javax.inject.Named;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.SingleTransformer;
-import com.github.rcd27.dribbbleapp.DribbbleApplication;
-import com.github.rcd27.dribbbleapp.model.net.DribbbleApi;
-import com.github.rcd27.dribbbleapp.model.objects.ShotDataTransferObject;
-import com.github.rcd27.dribbbleapp.other.Const;
 
 public class ModelImpl implements Model {
 

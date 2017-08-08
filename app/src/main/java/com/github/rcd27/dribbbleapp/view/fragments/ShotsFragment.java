@@ -11,16 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import java.util.List;
-
 import com.github.rcd27.dribbbleapp.R;
 import com.github.rcd27.dribbbleapp.model.objects.ShotVisualObject;
 import com.github.rcd27.dribbbleapp.presenter.Presenter;
 import com.github.rcd27.dribbbleapp.presenter.ShotsFragmentPresenter;
 import com.github.rcd27.dribbbleapp.view.adapters.ShotsFragmentListAdapter;
 
-public class ShotsFragment extends Fragment
-        implements com.github.rcd27.dribbbleapp.view.View {
+import java.util.List;
+
+public class ShotsFragment extends Fragment implements ShotsFragmentView {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -73,5 +72,10 @@ public class ShotsFragment extends Fragment
             listAdapter.notifyDataSetChanged();
         }
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showError(@NonNull String errorMessage) {
+        //TODO обработать
     }
 }
