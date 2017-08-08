@@ -8,7 +8,7 @@ import com.github.rcd27.dribbbleapp.model.objects.ShotDataTransferObject;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface DribbbleApi {
+public interface DribbbleApiInterface {
     @GET("shots")
     Single<List<ShotDataTransferObject>> getShots(@Query("page") int pageNumber,
                                                   @Query("per_page") int shotsPerPage);

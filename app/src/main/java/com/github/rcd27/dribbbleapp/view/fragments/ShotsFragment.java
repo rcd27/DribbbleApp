@@ -4,12 +4,14 @@ package com.github.rcd27.dribbbleapp.view.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BaseTransientBottomBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.github.rcd27.dribbbleapp.R;
 import com.github.rcd27.dribbbleapp.model.objects.ShotVisualObject;
@@ -18,6 +20,7 @@ import com.github.rcd27.dribbbleapp.presenter.ShotsFragmentPresenter;
 import com.github.rcd27.dribbbleapp.view.adapters.ShotsFragmentListAdapter;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ShotsFragment extends Fragment implements ShotsFragmentView {
 
@@ -54,12 +57,8 @@ public class ShotsFragment extends Fragment implements ShotsFragmentView {
 
         listAdapter = new ShotsFragmentListAdapter(getContext());
         shotsListView.setAdapter(listAdapter);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.updateActual();
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(
+                () -> presenter.checkIfOnlineAndUpdateActual());
 
         presenter.updateActual();
     }
@@ -76,6 +75,7 @@ public class ShotsFragment extends Fragment implements ShotsFragmentView {
 
     @Override
     public void showError(@NonNull String errorMessage) {
-        //TODO обработать
+        Toast.makeText(getContext(),errorMessage, Toast.LENGTH_LONG).show();
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

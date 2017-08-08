@@ -5,4 +5,5 @@ public interface Presenter {
 
     void updateActual();
 
+    void checkIfOnlineAndUpdateActual();
 }

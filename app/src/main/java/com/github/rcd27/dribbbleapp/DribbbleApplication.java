@@ -3,14 +3,15 @@ package com.github.rcd27.dribbbleapp;
 
 import android.app.Application;
 
+import com.github.rcd27.dribbbleapp.di.ApplicationModule;
 import com.github.rcd27.dribbbleapp.di.ModelModule;
-import com.github.rcd27.dribbbleapp.di.NetworkModule;
 import com.github.rcd27.dribbbleapp.di.AppComponent;
 import com.github.rcd27.dribbbleapp.di.DaggerAppComponent;
+import com.github.rcd27.dribbbleapp.model.net.NetworkModule;
 
 /* 1. Игнорировать анимированные картинки √
  * 2. Использовать картинки высокого качества, если такие поддерживаются √
- * 3. Внедрить оффлайн кэширование: при перезапуске приложения всё должно цепляться с диска
+ * 3. Внедрить оффлайн кэширование: при перезапуске приложения всё должно цепляться с диска √
  * 4. Каждый шот дожен иметь название и описание. Описание не больше двух строк. √
  * 5. Размер шота не больше половины экрана √
  * 6. Внедрить "Pull down to refresh". √
@@ -24,7 +25,6 @@ public class DribbbleApplication extends Application {
         return instance;
     }
 
-    //TODO сделать сабкомпонент для ShotSwipeRefreshFragment
     protected AppComponent appComponent;
 
     @Override
@@ -36,7 +36,10 @@ public class DribbbleApplication extends Application {
 
     protected void initDagger() {
         appComponent = DaggerAppComponent.builder()
-                .networkModule(new NetworkModule(getCacheDir()))
+                .applicationModule(new ApplicationModule(this))
+                .networkModule(new NetworkModule(
+                        "https://api.dribbble.com/v1/",
+                        "Bearer d40d9ad2e7a946e27e922ac609b84ff86a91223585208473a821aa394c602003"))
                 .modelModule(new ModelModule())
                 .build();
     }

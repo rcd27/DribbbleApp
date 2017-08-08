@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
 import com.github.rcd27.dribbbleapp.model.mappers.RequiredShotsMapper;
 import com.github.rcd27.dribbbleapp.model.Model;
+import com.github.rcd27.dribbbleapp.utils.ConnectivityUtils;
 import com.github.rcd27.dribbbleapp.view.View;
 import com.github.rcd27.dribbbleapp.view.fragments.ShotsFragmentView;
 
@@ -14,10 +15,13 @@ public class ShotsFragmentPresenter implements Presenter {
     @Inject
     public Model model;
 
-    private  ShotsFragmentView view;
-
     @Inject
     public RequiredShotsMapper requiredShotsMapper;
+
+    @Inject
+    public ConnectivityUtils connectivityUtils;
+
+    private  ShotsFragmentView view;
 
     // Для переключения страниц. Можно использовать Link Header.
     // см.: http://developer.dribbble.com/v1/#pagination
@@ -39,5 +43,14 @@ public class ShotsFragmentPresenter implements Presenter {
                 .doOnSuccess(view::update)
                 .subscribe();
         pageNumber++;
+    }
+
+    @Override
+    public void checkIfOnlineAndUpdateActual() {
+        if (connectivityUtils.isOnline()) {
+            updateActual();
+        } else {
+            view.showError("No Internet Connection");
+        }
     }
 }

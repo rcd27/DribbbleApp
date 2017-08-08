@@ -1,10 +1,13 @@
 package com.github.rcd27.dribbbleapp.model;
 
 
+import com.github.rcd27.dribbbleapp.model.objects.ShotDataTransferObject;
+
 import java.util.List;
 
 import io.reactivex.Single;
-import com.github.rcd27.dribbbleapp.model.objects.ShotDataTransferObject;
+
+//TODO перенести всё в DribbbleServiceInterface
 
 public interface Model {
 
