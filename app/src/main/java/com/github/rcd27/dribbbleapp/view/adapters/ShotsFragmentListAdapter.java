@@ -4,6 +4,7 @@ package com.github.rcd27.dribbbleapp.view.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,16 +45,8 @@ public class ShotsFragmentListAdapter extends ArrayAdapter<ShotVisualObject> {
         ((TextView) convertView.findViewById(R.id.card_view_text_title))
                 .setText(shot.title);
         ((TextView) convertView.findViewById(R.id.card_view_text_description))
-                .setText(prepareDescription(shot.description));
+                .setText(Html.fromHtml(shot.description));
 
         return convertView;
-    }
-
-    private String prepareDescription(@NonNull String stringToPrepare) {
-        String result = stringToPrepare.replace("<p>", "").replace("</p>", "");
-        if (result.length() >= 96) {
-            return result.substring(0, 93).concat("...");
-        }
-        return result;
     }
 }
