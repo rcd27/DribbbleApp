@@ -6,6 +6,8 @@ import android.content.Context;
 import com.github.rcd27.dribbbleapp.model.mappers.RequiredShotsMapper;
 import com.github.rcd27.dribbbleapp.other.Const;
 import com.github.rcd27.dribbbleapp.utils.ConnectivityUtils;
+import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -121,5 +123,17 @@ public class NetworkModule {
     private Cache getCache(Context context) {
         File httpCacheDirectory = new File(context.getCacheDir(), CACHE_PATH);
         return new Cache(httpCacheDirectory, CACHE_SIZE);
+    }
+
+    @Provides
+    public Picasso providePicasso(Context context) {
+        Picasso picasso = new Picasso.Builder(context)
+                .downloader(new OkHttp3Downloader(context, CACHE_SIZE * 2))
+                .build();
+
+        picasso.setIndicatorsEnabled(true);
+        picasso.setLoggingEnabled(true);
+
+        return picasso;
     }
 }
