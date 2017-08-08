@@ -55,12 +55,6 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public DribbbleServiceInterface provideDribbbleService(DribbbleApiInterface apiInterface, RequiredShotsMapper requiredShotsMapper) {
-        return new DribbbleService(apiInterface, requiredShotsMapper);
-    }
-
-    @Provides
-    @Singleton
     public DribbbleApiInterface provideApiInterface(Context context) {
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)

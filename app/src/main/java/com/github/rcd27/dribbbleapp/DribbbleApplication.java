@@ -3,18 +3,20 @@ package com.github.rcd27.dribbbleapp;
 
 import android.app.Application;
 
-import com.github.rcd27.dribbbleapp.di.ApplicationModule;
-import com.github.rcd27.dribbbleapp.di.ModelModule;
 import com.github.rcd27.dribbbleapp.di.AppComponent;
+import com.github.rcd27.dribbbleapp.di.ApplicationModule;
 import com.github.rcd27.dribbbleapp.di.DaggerAppComponent;
+import com.github.rcd27.dribbbleapp.di.ModelModule;
 import com.github.rcd27.dribbbleapp.model.net.NetworkModule;
 
-/* 1. Игнорировать анимированные картинки √
+/**
+ * 1. Игнорировать анимированные картинки √
  * 2. Использовать картинки высокого качества, если такие поддерживаются √
  * 3. Внедрить оффлайн кэширование: при перезапуске приложения всё должно цепляться с диска √
  * 4. Каждый шот дожен иметь название и описание. Описание не больше двух строк. √
  * 5. Размер шота не больше половины экрана √
  * 6. Внедрить "Pull down to refresh". √
+ * 7. Код должен быть покрыт тестами. X
  */
 
 public class DribbbleApplication extends Application {
