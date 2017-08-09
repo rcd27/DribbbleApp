@@ -23,3 +23,11 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// TODO определить все версии в одном месте. Обращаться через $rootProject.
+ext{
+    // Sdk & tools
+    
+    // App dependencies
+
+}
