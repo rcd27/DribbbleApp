@@ -6,7 +6,6 @@ import android.app.Application;
 import com.github.rcd27.dribbbleapp.di.AppComponent;
 import com.github.rcd27.dribbbleapp.di.ApplicationModule;
 import com.github.rcd27.dribbbleapp.di.DaggerAppComponent;
-import com.github.rcd27.dribbbleapp.di.ModelModule;
 import com.github.rcd27.dribbbleapp.utils.NetworkModule;
 
 /**
@@ -46,7 +45,6 @@ public class DribbbleApplication extends Application {
                 .networkModule(new NetworkModule(
                         "https://api.dribbble.com/v1/",
                         "Bearer d40d9ad2e7a946e27e922ac609b84ff86a91223585208473a821aa394c602003"))
-                .modelModule(new ModelModule())
                 .build();
     }
 

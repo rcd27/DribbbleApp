@@ -16,8 +16,8 @@ public class ShotsActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            ShotsFragment fragment = new ShotsFragment();
-            transaction.replace(R.id.shots_fragment_container, fragment);
+            ShotsFragment shotsFragment = new ShotsFragment();
+            transaction.replace(R.id.shots_fragment_container, shotsFragment);
             transaction.commit();
         }
     }

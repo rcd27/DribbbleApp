@@ -8,7 +8,7 @@ import com.github.rcd27.dribbbleapp.shots.view.ShotsView;
 import java.util.List;
 
 
-public interface ShotsFragmentShotsView extends ShotsView {
+public interface ShotsFragmentView extends ShotsView {
 
     void update(@NonNull List<ShotVisualObject> shots);
 
