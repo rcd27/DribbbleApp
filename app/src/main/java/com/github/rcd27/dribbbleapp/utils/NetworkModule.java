@@ -1,10 +1,11 @@
-package com.github.rcd27.dribbbleapp.model.net;
+package com.github.rcd27.dribbbleapp.utils;
 
 
 import android.content.Context;
 
-import com.github.rcd27.dribbbleapp.model.mappers.RequiredShotsMapper;
+import com.github.rcd27.dribbbleapp.shots.model.mappers.RequiredShotsMapper;
 import com.github.rcd27.dribbbleapp.other.Const;
+import com.github.rcd27.dribbbleapp.shots.model.net.DribbbleApiInterface;
 import com.github.rcd27.dribbbleapp.utils.ConnectivityUtils;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;

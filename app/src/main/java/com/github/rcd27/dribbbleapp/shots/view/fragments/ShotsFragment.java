@@ -1,10 +1,9 @@
-package com.github.rcd27.dribbbleapp.view.fragments;
+package com.github.rcd27.dribbbleapp.shots.view.fragments;
 
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BaseTransientBottomBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -14,15 +13,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.rcd27.dribbbleapp.R;
-import com.github.rcd27.dribbbleapp.model.objects.ShotVisualObject;
-import com.github.rcd27.dribbbleapp.presenter.Presenter;
-import com.github.rcd27.dribbbleapp.presenter.ShotsFragmentPresenter;
-import com.github.rcd27.dribbbleapp.view.adapters.ShotsFragmentListAdapter;
+import com.github.rcd27.dribbbleapp.shots.model.objects.ShotVisualObject;
+import com.github.rcd27.dribbbleapp.shots.presenter.ShotsPresenter;
+import com.github.rcd27.dribbbleapp.shots.presenter.ShotsFragmentShotsPresenter;
+import com.github.rcd27.dribbbleapp.shots.view.adapters.ShotsFragmentListAdapter;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class ShotsFragment extends Fragment implements ShotsFragmentView {
+public class ShotsFragment extends Fragment implements ShotsFragmentShotsView {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -31,11 +29,11 @@ public class ShotsFragment extends Fragment implements ShotsFragmentView {
     //TODO FIXME https://habrahabr.ru/post/334710/
     private ShotsFragmentListAdapter listAdapter;
 
-    private Presenter presenter;
+    private ShotsPresenter shotsPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        presenter = new ShotsFragmentPresenter(this);
+        shotsPresenter = new ShotsFragmentShotsPresenter(this);
         super.onCreate(savedInstanceState);
     }
 
@@ -58,9 +56,9 @@ public class ShotsFragment extends Fragment implements ShotsFragmentView {
         listAdapter = new ShotsFragmentListAdapter(getContext());
         shotsListView.setAdapter(listAdapter);
         swipeRefreshLayout.setOnRefreshListener(
-                () -> presenter.checkIfOnlineAndUpdateActual());
+                () -> shotsPresenter.checkIfOnlineAndUpdateActual());
 
-        presenter.updateActual();
+        shotsPresenter.updateActual();
     }
 
     @Override

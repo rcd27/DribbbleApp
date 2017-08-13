@@ -1,19 +1,18 @@
-package com.github.rcd27.dribbbleapp.presenter;
+package com.github.rcd27.dribbbleapp.shots.presenter;
 
 
 import javax.inject.Inject;
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
-import com.github.rcd27.dribbbleapp.model.mappers.RequiredShotsMapper;
-import com.github.rcd27.dribbbleapp.model.Model;
+import com.github.rcd27.dribbbleapp.shots.model.ShotsModel;
+import com.github.rcd27.dribbbleapp.shots.model.mappers.RequiredShotsMapper;
+import com.github.rcd27.dribbbleapp.shots.view.fragments.ShotsFragmentShotsView;
 import com.github.rcd27.dribbbleapp.utils.ConnectivityUtils;
-import com.github.rcd27.dribbbleapp.view.View;
-import com.github.rcd27.dribbbleapp.view.fragments.ShotsFragmentView;
 
-public class ShotsFragmentPresenter implements Presenter {
+public class ShotsFragmentShotsPresenter implements ShotsPresenter {
 
     @Inject
-    public Model model;
+    public ShotsModel shotsModel;
 
     @Inject
     public RequiredShotsMapper requiredShotsMapper;
@@ -21,24 +20,24 @@ public class ShotsFragmentPresenter implements Presenter {
     @Inject
     public ConnectivityUtils connectivityUtils;
 
-    private  ShotsFragmentView view;
+    private ShotsFragmentShotsView view;
 
     // Для переключения страниц. Можно использовать Link Header.
     // см.: http://developer.dribbble.com/v1/#pagination
     private int pageNumber = 1;
 
     @Inject
-    public ShotsFragmentPresenter() {
+    public ShotsFragmentShotsPresenter() {
     }
 
-    public ShotsFragmentPresenter(ShotsFragmentView view) {
+    public ShotsFragmentShotsPresenter(ShotsFragmentShotsView view) {
         this.view = view;
         DribbbleApplication.getInstance().getAppComponent().inject(this);
     }
 
     @Override
     public void updateActual() {
-        model.getShots(pageNumber, 50)
+        shotsModel.getShots(pageNumber, 50)
                 .map(requiredShotsMapper)
                 .doOnSuccess(view::update)
                 .subscribe();

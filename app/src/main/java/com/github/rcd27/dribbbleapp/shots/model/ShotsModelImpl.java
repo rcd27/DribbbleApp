@@ -1,9 +1,9 @@
-package com.github.rcd27.dribbbleapp.model;
+package com.github.rcd27.dribbbleapp.shots.model;
 
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
-import com.github.rcd27.dribbbleapp.model.net.DribbbleApiInterface;
-import com.github.rcd27.dribbbleapp.model.objects.ShotDataTransferObject;
+import com.github.rcd27.dribbbleapp.shots.model.net.DribbbleApiInterface;
+import com.github.rcd27.dribbbleapp.shots.model.objects.ShotDataTransferObject;
 import com.github.rcd27.dribbbleapp.other.Const;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.SingleTransformer;
 
-public class ModelImpl implements Model {
+public class ShotsModelImpl implements ShotsModel {
 
     private final SingleTransformer schedulersTransformer;
 
@@ -30,7 +30,7 @@ public class ModelImpl implements Model {
     @Named(Const.IO_THREAD)
     Scheduler ioThread;
 
-    public ModelImpl() {
+    public ShotsModelImpl() {
         DribbbleApplication.getInstance().getAppComponent().inject(this);
         schedulersTransformer = observable -> observable
                 .subscribeOn(ioThread)

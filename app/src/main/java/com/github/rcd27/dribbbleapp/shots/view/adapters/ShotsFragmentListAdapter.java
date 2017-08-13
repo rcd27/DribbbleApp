@@ -1,4 +1,4 @@
-package com.github.rcd27.dribbbleapp.view.adapters;
+package com.github.rcd27.dribbbleapp.shots.view.adapters;
 
 
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
 import com.github.rcd27.dribbbleapp.R;
-import com.github.rcd27.dribbbleapp.model.objects.ShotVisualObject;
+import com.github.rcd27.dribbbleapp.shots.model.objects.ShotVisualObject;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;

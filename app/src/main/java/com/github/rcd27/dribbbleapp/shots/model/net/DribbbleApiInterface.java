@@ -1,10 +1,10 @@
-package com.github.rcd27.dribbbleapp.model.net;
+package com.github.rcd27.dribbbleapp.shots.model.net;
 
 
 import java.util.List;
 
 import io.reactivex.Single;
-import com.github.rcd27.dribbbleapp.model.objects.ShotDataTransferObject;
+import com.github.rcd27.dribbbleapp.shots.model.objects.ShotDataTransferObject;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

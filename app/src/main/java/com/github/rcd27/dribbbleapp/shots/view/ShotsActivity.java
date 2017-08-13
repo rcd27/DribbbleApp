@@ -1,13 +1,13 @@
-package com.github.rcd27.dribbbleapp.view;
+package com.github.rcd27.dribbbleapp.shots.view;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.rcd27.dribbbleapp.R;
-import com.github.rcd27.dribbbleapp.view.fragments.ShotsFragment;
+import com.github.rcd27.dribbbleapp.shots.view.fragments.ShotsFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class ShotsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

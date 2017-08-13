@@ -1,4 +1,4 @@
-package com.github.rcd27.dribbbleapp.model.objects;
+package com.github.rcd27.dribbbleapp.shots.model.objects;
 
 /*
  * Visual object для предоставления адаптеру и отображения shot'ов.

@@ -7,7 +7,7 @@ import com.github.rcd27.dribbbleapp.di.AppComponent;
 import com.github.rcd27.dribbbleapp.di.ApplicationModule;
 import com.github.rcd27.dribbbleapp.di.DaggerAppComponent;
 import com.github.rcd27.dribbbleapp.di.ModelModule;
-import com.github.rcd27.dribbbleapp.model.net.NetworkModule;
+import com.github.rcd27.dribbbleapp.utils.NetworkModule;
 
 /**
  * 1. Игнорировать анимированные картинки √
