@@ -24,10 +24,20 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-// TODO определить все версии в одном месте. Обращаться через $rootProject.
 ext{
     // Sdk & tools
-    
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.3'
+    minSdkVersion = 23
+    targetSdkVersion = 25
     // App dependencies
-
+    support_version = '25.3.1'
+    picasso_version = '2.5.2'
+    retrofit_version = '2.3.0'
+    rxandroid_version = '2.0.1'
+    rx_version = '2.1.2'
+    dagger_version = '2.11'
+    junit_version = '4.12'
+    mockito_version = '2.7.22'
+    robolectric_version = '3.0'
 }
