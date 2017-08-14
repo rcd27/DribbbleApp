@@ -57,7 +57,7 @@ dependencies {
     apt "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
 
     testCompile "junit:junit:$rootProject.junit_version"
-    testCompile "org.mockito:mockito-core:$rootProject.mockito_version"
+    testCompile "org.mockito:mockito-all:$rootProject.mockito_version"
     testCompile "org.hamcrest:hamcrest-all:$rootProject.hamcrest_version"
     testCompile "org.powermock:powermock-module-junit4:$rootProject.powerMock_version"
     testCompile "org.powermock:powermock-api-mockito:$rootProject.powerMock_version"

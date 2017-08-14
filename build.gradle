@@ -40,6 +40,6 @@ ext{
     powerMock_version = '1.6.2'
     dagger_version = '2.11'
     junit_version = '4.12'
-    mockito_version = '2.7.22'
+    mockito_version = '1.10.19'
     robolectric_version = '3.0'
 }

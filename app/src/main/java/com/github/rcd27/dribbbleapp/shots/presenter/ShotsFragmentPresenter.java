@@ -32,6 +32,8 @@ public class ShotsFragmentPresenter implements ShotsContract.Presenter {
 
     public ShotsFragmentPresenter(ShotsContract.View view) {
         this.view = view;
+        // TODO FIXME инжектить надо в соотв. фрагменты. Здесь создание должно быть без даггера,
+        // иначе написание юнит тестов - это холи шит и жутчайший батхёрт.
         DribbbleApplication.getInstance().getAppComponent().inject(this);
     }
 
