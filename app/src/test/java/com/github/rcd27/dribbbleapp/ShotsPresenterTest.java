@@ -2,7 +2,7 @@ package com.github.rcd27.dribbbleapp;
 
 
 import com.github.rcd27.dribbbleapp.shots.ShotsContract;
-import com.github.rcd27.dribbbleapp.shots.presenter.ShotsFragmentPresenter;
+import com.github.rcd27.dribbbleapp.shots.presenter.ShotsPresenter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +11,8 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 
+import dagger.Module;
+
 import static org.mockito.Mockito.verify;
 
 public class ShotsPresenterTest {
@@ -18,18 +20,21 @@ public class ShotsPresenterTest {
     @Mock
     private ShotsContract.View shotsView;
 
-    private ShotsFragmentPresenter shotsFragmentPresenter;
+    private ShotsPresenter shotsPresenter;
+
+    @Mock
+    private ShotsContract.Interactor interactor;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        shotsFragmentPresenter = new ShotsFragmentPresenter(shotsView);
+//        shotsPresenter = new ShotsPresenter(interactor, shotsView);
     }
 
     @Test
     public void updateActualTest() {
-        shotsFragmentPresenter.updateActual();
+//        shotsPresenter.updateActual();
 
         verify(shotsView).update(new ArrayList<>());
 

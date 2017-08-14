@@ -3,9 +3,9 @@ package com.github.rcd27.dribbbleapp.utils;
 
 import android.content.Context;
 
-import com.github.rcd27.dribbbleapp.shots.data.mappers.RequiredShotsMapper;
+import com.github.rcd27.dribbbleapp.shots.data.RequiredShotsMapper;
 import com.github.rcd27.dribbbleapp.other.Const;
-import com.github.rcd27.dribbbleapp.shots.data.net.DribbbleShotsApi;
+import com.github.rcd27.dribbbleapp.shots.data.DribbbleShotsApi;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -45,12 +45,6 @@ public class NetworkModule {
     @Singleton
     public ConnectivityUtils provideConnectivityUtils(Context context) {
         return new ConnectivityUtils(context);
-    }
-
-    @Provides
-    @Singleton
-    public RequiredShotsMapper provideShotsMapper() {
-        return new RequiredShotsMapper();
     }
 
     @Provides

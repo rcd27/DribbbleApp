@@ -1,4 +1,4 @@
-package com.github.rcd27.dribbbleapp.shots.view.adapters;
+package com.github.rcd27.dribbbleapp.shots.view;
 
 
 import android.content.Context;
@@ -14,17 +14,17 @@ import android.widget.TextView;
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
 import com.github.rcd27.dribbbleapp.R;
-import com.github.rcd27.dribbbleapp.shots.data.objects.ShotVisualObject;
+import com.github.rcd27.dribbbleapp.shots.data.ShotVisualObject;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
-public class ShotsFragmentListAdapter extends ArrayAdapter<ShotVisualObject> {
+public class ShotsListAdapter extends ArrayAdapter<ShotVisualObject> {
 
     @Inject
     Picasso picasso;
 
-    public ShotsFragmentListAdapter(@NonNull Context context) {
+    public ShotsListAdapter(@NonNull Context context) {
         super(context, R.layout.list_item_cardview);
         DribbbleApplication.getInstance().getAppComponent().inject(this);
     }

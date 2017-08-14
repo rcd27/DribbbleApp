@@ -2,8 +2,7 @@ package com.github.rcd27.dribbbleapp.shots.data;
 
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
-import com.github.rcd27.dribbbleapp.shots.data.net.DribbbleShotsApi;
-import com.github.rcd27.dribbbleapp.shots.data.objects.ShotDataTransferObject;
+import com.github.rcd27.dribbbleapp.shots.ShotsContract;
 import com.github.rcd27.dribbbleapp.other.Const;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.SingleTransformer;
 
-public class ShotsModelImpl implements ShotsModel {
+public class ShotsModelImpl implements ShotsContract.Model {
 
     private final SingleTransformer schedulersTransformer;
 

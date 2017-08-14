@@ -1,4 +1,4 @@
-package com.github.rcd27.dribbbleapp.shots.view.fragments;
+package com.github.rcd27.dribbbleapp.shots.view;
 
 
 import android.os.Bundle;
@@ -11,29 +11,34 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.rcd27.dribbbleapp.DribbbleApplication;
 import com.github.rcd27.dribbbleapp.R;
+import com.github.rcd27.dribbbleapp.di.ShotsModule;
 import com.github.rcd27.dribbbleapp.shots.ShotsContract;
-import com.github.rcd27.dribbbleapp.shots.data.objects.ShotVisualObject;
-import com.github.rcd27.dribbbleapp.shots.presenter.ShotsFragmentPresenter;
-import com.github.rcd27.dribbbleapp.shots.view.adapters.ShotsFragmentListAdapter;
+import com.github.rcd27.dribbbleapp.shots.data.ShotVisualObject;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class ShotsFragment extends android.support.v4.app.Fragment implements ShotsContract.View {
 
     private SwipeRefreshLayout swipeRefreshLayout;
-
     private ListView shotsListView;
-
     //TODO FIXME https://habrahabr.ru/post/334710/
-    private ShotsFragmentListAdapter listAdapter;
+    private ShotsListAdapter listAdapter;
 
-    private ShotsContract.Presenter shotsPresenter;
+    @Inject
+    public ShotsContract.Presenter shotsPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        shotsPresenter = new ShotsFragmentPresenter(this);
         super.onCreate(savedInstanceState);
+
+        DribbbleApplication.getInstance()
+                .getAppComponent()
+                .plus(new ShotsModule(this))
+                .inject(this);
     }
 
     @Nullable
@@ -52,7 +57,7 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        listAdapter = new ShotsFragmentListAdapter(getContext());
+        listAdapter = new ShotsListAdapter(getContext());
         shotsListView.setAdapter(listAdapter);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> shotsPresenter.checkIfOnlineAndUpdateActual());

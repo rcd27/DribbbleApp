@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.rcd27.dribbbleapp.R;
-import com.github.rcd27.dribbbleapp.shots.view.fragments.ShotsFragment;
 
 public class ShotsActivity extends AppCompatActivity {
 
