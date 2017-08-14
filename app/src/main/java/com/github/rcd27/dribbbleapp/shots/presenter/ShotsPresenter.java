@@ -18,6 +18,7 @@ public class ShotsPresenter implements ShotsContract.Presenter {
         shotsInteractor
                 .getFithtyShotsForOnePage()
                 .doOnSuccess(view::update)
+                .doOnError(Throwable::printStackTrace)
                 .subscribe();
     }
 
