@@ -3,10 +3,9 @@ package com.github.rcd27.dribbbleapp.utils;
 
 import android.content.Context;
 
-import com.github.rcd27.dribbbleapp.shots.model.mappers.RequiredShotsMapper;
+import com.github.rcd27.dribbbleapp.shots.data.mappers.RequiredShotsMapper;
 import com.github.rcd27.dribbbleapp.other.Const;
-import com.github.rcd27.dribbbleapp.shots.model.net.DribbbleApiInterface;
-import com.github.rcd27.dribbbleapp.utils.ConnectivityUtils;
+import com.github.rcd27.dribbbleapp.shots.data.net.DribbbleShotsApi;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -56,7 +55,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public DribbbleApiInterface provideApiInterface(Context context) {
+    public DribbbleShotsApi provideApiInterface(Context context) {
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(provideAuthInterceptor())
@@ -72,7 +71,7 @@ public class NetworkModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 
         return builder.build()
-                .create(DribbbleApiInterface.class);
+                .create(DribbbleShotsApi.class);
     }
 
     private Interceptor provideAuthInterceptor() {

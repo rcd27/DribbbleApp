@@ -18,10 +18,6 @@ import com.github.rcd27.dribbbleapp.utils.NetworkModule;
  * 7. Код должен быть покрыт тестами. X
  */
 
-/** TODO:
- * 1.Перейти от нечитаемой структуры 'package by layer' к 'package by feature'. .shots .shotdetail и т.д.
- */
-
 public class DribbbleApplication extends Application {
 
     private static DribbbleApplication instance;

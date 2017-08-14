@@ -3,7 +3,7 @@ package com.github.rcd27.dribbbleapp.di;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import com.github.rcd27.dribbbleapp.shots.model.ShotsModelImpl;
+import com.github.rcd27.dribbbleapp.shots.data.ShotsModelImpl;
 import com.github.rcd27.dribbbleapp.utils.NetworkModule;
 import com.github.rcd27.dribbbleapp.shots.presenter.ShotsFragmentPresenter;
 import com.github.rcd27.dribbbleapp.shots.view.adapters.ShotsFragmentListAdapter;

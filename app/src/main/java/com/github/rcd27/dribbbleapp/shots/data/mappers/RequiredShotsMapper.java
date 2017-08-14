@@ -1,4 +1,4 @@
-package com.github.rcd27.dribbbleapp.shots.model.mappers;
+package com.github.rcd27.dribbbleapp.shots.data.mappers;
 
 
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
-import com.github.rcd27.dribbbleapp.shots.model.objects.ShotDataTransferObject;
-import com.github.rcd27.dribbbleapp.shots.model.objects.ShotVisualObject;
+import com.github.rcd27.dribbbleapp.shots.data.objects.ShotDataTransferObject;
+import com.github.rcd27.dribbbleapp.shots.data.objects.ShotVisualObject;
 import com.github.rcd27.dribbbleapp.other.Const;
 
 /*

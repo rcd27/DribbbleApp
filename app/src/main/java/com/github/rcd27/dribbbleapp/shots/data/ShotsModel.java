@@ -1,7 +1,7 @@
-package com.github.rcd27.dribbbleapp.shots.model;
+package com.github.rcd27.dribbbleapp.shots.data;
 
 
-import com.github.rcd27.dribbbleapp.shots.model.objects.ShotDataTransferObject;
+import com.github.rcd27.dribbbleapp.shots.data.objects.ShotDataTransferObject;
 
 import java.util.List;
 

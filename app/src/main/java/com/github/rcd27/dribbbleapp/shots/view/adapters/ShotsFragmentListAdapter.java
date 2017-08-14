@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
 import com.github.rcd27.dribbbleapp.R;
-import com.github.rcd27.dribbbleapp.shots.model.objects.ShotVisualObject;
+import com.github.rcd27.dribbbleapp.shots.data.objects.ShotVisualObject;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;

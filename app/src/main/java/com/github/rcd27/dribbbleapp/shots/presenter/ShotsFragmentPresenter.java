@@ -4,8 +4,8 @@ package com.github.rcd27.dribbbleapp.shots.presenter;
 import javax.inject.Inject;
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
-import com.github.rcd27.dribbbleapp.shots.model.ShotsModel;
-import com.github.rcd27.dribbbleapp.shots.model.mappers.RequiredShotsMapper;
+import com.github.rcd27.dribbbleapp.shots.data.ShotsModel;
+import com.github.rcd27.dribbbleapp.shots.data.mappers.RequiredShotsMapper;
 import com.github.rcd27.dribbbleapp.shots.view.fragments.ShotsFragmentView;
 import com.github.rcd27.dribbbleapp.utils.ConnectivityUtils;
 

@@ -1,9 +1,9 @@
-package com.github.rcd27.dribbbleapp.shots.model;
+package com.github.rcd27.dribbbleapp.shots.data;
 
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
-import com.github.rcd27.dribbbleapp.shots.model.net.DribbbleApiInterface;
-import com.github.rcd27.dribbbleapp.shots.model.objects.ShotDataTransferObject;
+import com.github.rcd27.dribbbleapp.shots.data.net.DribbbleShotsApi;
+import com.github.rcd27.dribbbleapp.shots.data.objects.ShotDataTransferObject;
 import com.github.rcd27.dribbbleapp.other.Const;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class ShotsModelImpl implements ShotsModel {
     private final SingleTransformer schedulersTransformer;
 
     @Inject
-    DribbbleApiInterface dribbbleApiInterface;
+    DribbbleShotsApi dribbbleShotsApi;
 
     @Inject
     @Named(Const.UI_THREAD)
@@ -40,7 +40,7 @@ public class ShotsModelImpl implements ShotsModel {
 
     @Override
     public Single<List<ShotDataTransferObject>> getShots(int forPage, int shotsAmount) {
-        return dribbbleApiInterface.getShots(forPage, shotsAmount)
+        return dribbbleShotsApi.getShots(forPage, shotsAmount)
                 .compose(schedulersTransformer);
     }
 }

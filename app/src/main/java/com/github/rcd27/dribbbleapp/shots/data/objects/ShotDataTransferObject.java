@@ -1,4 +1,4 @@
-package com.github.rcd27.dribbbleapp.shots.model.objects;
+package com.github.rcd27.dribbbleapp.shots.data.objects;
 
 
 import android.support.annotation.Nullable;

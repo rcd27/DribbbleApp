@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.rcd27.dribbbleapp.R;
-import com.github.rcd27.dribbbleapp.shots.model.objects.ShotVisualObject;
+import com.github.rcd27.dribbbleapp.shots.data.objects.ShotVisualObject;
 import com.github.rcd27.dribbbleapp.shots.presenter.ShotsPresenter;
 import com.github.rcd27.dribbbleapp.shots.presenter.ShotsFragmentPresenter;
 import com.github.rcd27.dribbbleapp.shots.view.adapters.ShotsFragmentListAdapter;
