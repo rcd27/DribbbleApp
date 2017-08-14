@@ -12,23 +12,19 @@ public class ShotsInteractor implements ShotsContract.Interactor {
 
     private final ShotsContract.Model model;
     private final ConnectivityUtils connectivityUtils;
-    private final RequiredShotsMapper requiredShotsMapper;
 
     private int pageNumber = 0;
 
     public ShotsInteractor(ShotsContract.Model model,
-                           ConnectivityUtils connectivityUtils,
-                           RequiredShotsMapper requiredShotsMapper) {
+                           ConnectivityUtils connectivityUtils) {
         this.model = model;
         this.connectivityUtils = connectivityUtils;
-        this.requiredShotsMapper = requiredShotsMapper;
     }
 
     @Override
     public Single<List<ShotVisualObject>> getFithtyShotsForOnePage() {
         pageNumber++;
-        return model.getShots(pageNumber, 50)
-                .map(requiredShotsMapper);
+        return model.getShots(pageNumber, 50);
     }
 
     @Override

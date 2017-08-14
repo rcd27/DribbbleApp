@@ -12,21 +12,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.rcd27.dribbbleapp.DribbbleApplication;
 import com.github.rcd27.dribbbleapp.R;
 import com.github.rcd27.dribbbleapp.shots.data.ShotVisualObject;
 import com.squareup.picasso.Picasso;
 
-import javax.inject.Inject;
-
 public class ShotsListAdapter extends ArrayAdapter<ShotVisualObject> {
 
-    @Inject
-    Picasso picasso;
+    private final Picasso picasso;
 
-    public ShotsListAdapter(@NonNull Context context) {
+    public ShotsListAdapter(@NonNull Context context, Picasso picasso) {
         super(context, R.layout.list_item_cardview);
-        DribbbleApplication.getInstance().getAppComponent().inject(this);
+        this.picasso = picasso;
     }
 
     @NonNull

@@ -16,6 +16,7 @@ import com.github.rcd27.dribbbleapp.R;
 import com.github.rcd27.dribbbleapp.di.ShotsModule;
 import com.github.rcd27.dribbbleapp.shots.ShotsContract;
 import com.github.rcd27.dribbbleapp.shots.data.ShotVisualObject;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -30,6 +31,9 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
 
     @Inject
     public ShotsContract.Presenter shotsPresenter;
+
+    @Inject
+    public Picasso picasso;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +61,7 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        listAdapter = new ShotsListAdapter(getContext());
+        listAdapter = new ShotsListAdapter(getContext(), picasso);
         shotsListView.setAdapter(listAdapter);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> shotsPresenter.checkIfOnlineAndUpdateActual());

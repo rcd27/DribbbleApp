@@ -1,9 +1,10 @@
 package com.github.rcd27.dribbbleapp.di;
 
 import com.github.rcd27.dribbbleapp.shots.ShotsContract;
+import com.github.rcd27.dribbbleapp.shots.data.DribbbleShotsApi;
 import com.github.rcd27.dribbbleapp.shots.data.RequiredShotsMapper;
 import com.github.rcd27.dribbbleapp.shots.data.ShotsInteractor;
-import com.github.rcd27.dribbbleapp.shots.data.ShotsModelImpl;
+import com.github.rcd27.dribbbleapp.shots.data.ShotsRepository;
 import com.github.rcd27.dribbbleapp.shots.presenter.ShotsPresenter;
 import com.github.rcd27.dribbbleapp.utils.ConnectivityUtils;
 
@@ -27,17 +28,16 @@ public class ShotsModule {
         return new ShotsPresenter(shotsInteractor, view);
     }
 
-    //TODO спрятать маппер в слой Model.
     @Provides
     ShotsContract.Interactor provideShotsInteractor(ShotsContract.Model model,
-                                                    ConnectivityUtils connectivityUtils,
-                                                    RequiredShotsMapper requiredShotsMapper) {
-        return new ShotsInteractor(model, connectivityUtils, requiredShotsMapper);
+                                                    ConnectivityUtils connectivityUtils) {
+        return new ShotsInteractor(model, connectivityUtils);
     }
 
     @Provides
-    ShotsContract.Model provideModel() {
-        return new ShotsModelImpl();
+    ShotsContract.Model provideModel(DribbbleShotsApi dribbbleShotsApi,
+                                     RequiredShotsMapper mapper) {
+        return new ShotsRepository(dribbbleShotsApi, mapper);
     }
 
     @Provides

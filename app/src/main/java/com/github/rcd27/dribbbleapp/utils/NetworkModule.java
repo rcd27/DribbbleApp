@@ -3,8 +3,6 @@ package com.github.rcd27.dribbbleapp.utils;
 
 import android.content.Context;
 
-import com.github.rcd27.dribbbleapp.shots.data.RequiredShotsMapper;
-import com.github.rcd27.dribbbleapp.other.Const;
 import com.github.rcd27.dribbbleapp.shots.data.DribbbleShotsApi;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
@@ -32,6 +30,7 @@ public class NetworkModule {
     private static final String CACHE_CONTROL = "Cache-Control";
     private static final String CACHE_PATH = "httpCache";
     private static final int CONNECT_TIMEOUT = 10;
+    private static final String AUTHORIZATION = "Authorization";
 
     private final String dribbbleBaseUrl;
     private final String dribbbleAuthKey;
@@ -72,7 +71,7 @@ public class NetworkModule {
         return chain -> {
             Request original = chain.request();
             Request.Builder requestBuilder = original.newBuilder()
-                    .header(Const.AUTHORIZATION, dribbbleAuthKey);
+                    .header(AUTHORIZATION, dribbbleAuthKey);
             Request request = requestBuilder.build();
             return chain.proceed(request);
         };
@@ -114,6 +113,7 @@ public class NetworkModule {
     }
 
     @Provides
+    @Singleton
     public Picasso providePicasso(Context context) {
         Picasso picasso = new Picasso.Builder(context)
                 .downloader(new OkHttp3Downloader(context, CACHE_SIZE * 2))

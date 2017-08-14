@@ -3,7 +3,6 @@ package com.github.rcd27.dribbbleapp.shots;
 
 import android.support.annotation.NonNull;
 
-import com.github.rcd27.dribbbleapp.shots.data.ShotDataTransferObject;
 import com.github.rcd27.dribbbleapp.shots.data.ShotVisualObject;
 
 import java.util.List;
@@ -12,9 +11,9 @@ import io.reactivex.Single;
 
 public interface ShotsContract {
 
-    interface Model{
+    interface Model {
 
-        Single<List<ShotDataTransferObject>> getShots(int forPage, int shotsAmount);
+        Single<List<ShotVisualObject>> getShots(int forPage, int shotsAmount);
 
     }
 
@@ -34,7 +33,7 @@ public interface ShotsContract {
 
     }
 
-    interface Interactor{
+    interface Interactor {
 
         Single<List<ShotVisualObject>> getFithtyShotsForOnePage();
 
