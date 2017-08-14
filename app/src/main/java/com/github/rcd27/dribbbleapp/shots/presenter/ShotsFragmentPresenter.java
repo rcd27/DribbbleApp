@@ -1,15 +1,15 @@
 package com.github.rcd27.dribbbleapp.shots.presenter;
 
 
-import javax.inject.Inject;
-
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
+import com.github.rcd27.dribbbleapp.shots.ShotsContract;
 import com.github.rcd27.dribbbleapp.shots.data.ShotsModel;
 import com.github.rcd27.dribbbleapp.shots.data.mappers.RequiredShotsMapper;
-import com.github.rcd27.dribbbleapp.shots.view.fragments.ShotsFragmentView;
 import com.github.rcd27.dribbbleapp.utils.ConnectivityUtils;
 
-public class ShotsFragmentPresenter implements ShotsPresenter {
+import javax.inject.Inject;
+
+public class ShotsFragmentPresenter implements ShotsContract.Presenter {
 
     @Inject
     public ShotsModel shotsModel;
@@ -20,7 +20,7 @@ public class ShotsFragmentPresenter implements ShotsPresenter {
     @Inject
     public ConnectivityUtils connectivityUtils;
 
-    private ShotsFragmentView view;
+    private ShotsContract.View view;
 
     // Для переключения страниц. Можно использовать Link Header.
     // см.: http://developer.dribbble.com/v1/#pagination
@@ -30,7 +30,7 @@ public class ShotsFragmentPresenter implements ShotsPresenter {
     public ShotsFragmentPresenter() {
     }
 
-    public ShotsFragmentPresenter(ShotsFragmentView view) {
+    public ShotsFragmentPresenter(ShotsContract.View view) {
         this.view = view;
         DribbbleApplication.getInstance().getAppComponent().inject(this);
     }

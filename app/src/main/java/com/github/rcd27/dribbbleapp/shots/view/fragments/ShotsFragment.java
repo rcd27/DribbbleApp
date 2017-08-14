@@ -12,14 +12,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.rcd27.dribbbleapp.R;
+import com.github.rcd27.dribbbleapp.shots.ShotsContract;
 import com.github.rcd27.dribbbleapp.shots.data.objects.ShotVisualObject;
-import com.github.rcd27.dribbbleapp.shots.presenter.ShotsPresenter;
 import com.github.rcd27.dribbbleapp.shots.presenter.ShotsFragmentPresenter;
 import com.github.rcd27.dribbbleapp.shots.view.adapters.ShotsFragmentListAdapter;
 
 import java.util.List;
 
-public class ShotsFragment extends android.support.v4.app.Fragment implements ShotsFragmentView {
+public class ShotsFragment extends android.support.v4.app.Fragment implements ShotsContract.View {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -28,7 +28,7 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
     //TODO FIXME https://habrahabr.ru/post/334710/
     private ShotsFragmentListAdapter listAdapter;
 
-    private ShotsPresenter shotsPresenter;
+    private ShotsContract.Presenter shotsPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
 
     @Override
     public void showError(@NonNull String errorMessage) {
-        Toast.makeText(getContext(),errorMessage, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
         swipeRefreshLayout.setRefreshing(false);
     }
 }
