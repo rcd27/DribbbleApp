@@ -48,6 +48,12 @@ public class ShotsPresenterTest {
         verify(shotsView).update(testShots);
     }
 
+    @Test
+    public void outOfInternetConnectionTest() {
+        shotsPresenter.checkIfOnlineAndUpdateActual();
+        verify(shotsView).showError(ShotsPresenter.NO_INTERNET_CONNECTION);
+    }
+
     private List<ShotVisualObject> getTestShots() {
         return new ArrayList<ShotVisualObject>() {{
             add(new ShotVisualObject("mock.image.url1", "Mock Image#1", "How do you think what's this?"));

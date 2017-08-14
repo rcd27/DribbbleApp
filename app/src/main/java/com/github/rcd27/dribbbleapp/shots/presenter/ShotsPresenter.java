@@ -5,6 +5,8 @@ import com.github.rcd27.dribbbleapp.shots.ShotsContract;
 
 public class ShotsPresenter implements ShotsContract.Presenter {
 
+    public static final String NO_INTERNET_CONNECTION = "No Internet Connection";
+
     private ShotsContract.Interactor shotsInteractor;
     private ShotsContract.View view;
 
@@ -27,7 +29,7 @@ public class ShotsPresenter implements ShotsContract.Presenter {
         if (shotsInteractor.isOnline()) {
             updateActual();
         } else {
-            view.showError("No Internet Connection");
+            view.showError(NO_INTERNET_CONNECTION);
         }
     }
 }
