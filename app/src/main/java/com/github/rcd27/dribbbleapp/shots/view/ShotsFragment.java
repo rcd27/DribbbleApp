@@ -61,6 +61,7 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //TODO FIXME заинжектить сюда ListAdapter, всё необходимое подготовить в модулях.
         listAdapter = new ShotsListAdapter(getContext(), picasso);
         shotsListView.setAdapter(listAdapter);
         swipeRefreshLayout.setOnRefreshListener(
