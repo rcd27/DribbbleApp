@@ -25,6 +25,7 @@ public class ShotsListAdapter extends ArrayAdapter<ShotVisualObject> {
         this.picasso = picasso;
     }
 
+    //TODO FT1: будем добавлять анимацию в наш ListView
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
