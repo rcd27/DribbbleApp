@@ -8,6 +8,9 @@ import com.github.rcd27.dribbbleapp.di.ApplicationModule;
 import com.github.rcd27.dribbbleapp.di.DaggerAppComponent;
 import com.github.rcd27.dribbbleapp.utils.NetworkModule;
 
+// TODO: при добавлении фичи shot-detail, осуществить анимацию м. activities:
+// http://www.vogella.com/tutorials/AndroidAnimation/article.html#activity-animations-in-android-with-shared-views
+
 public class DribbbleApplication extends Application {
 
     private static DribbbleApplication instance;
