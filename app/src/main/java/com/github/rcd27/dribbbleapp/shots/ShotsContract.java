@@ -31,6 +31,7 @@ public interface ShotsContract {
 
         void checkIfOnlineAndUpdateActual();
 
+        void onCardClicked(android.view.View card);
     }
 
     interface Interactor {

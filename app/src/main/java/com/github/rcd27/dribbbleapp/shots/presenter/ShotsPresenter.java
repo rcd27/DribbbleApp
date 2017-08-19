@@ -1,6 +1,9 @@
 package com.github.rcd27.dribbbleapp.shots.presenter;
 
 
+import android.util.Log;
+import android.view.View;
+
 import com.github.rcd27.dribbbleapp.shots.ShotsContract;
 
 public class ShotsPresenter implements ShotsContract.Presenter {
@@ -31,5 +34,10 @@ public class ShotsPresenter implements ShotsContract.Presenter {
         } else {
             view.showError(NO_INTERNET_CONNECTION);
         }
+    }
+
+    @Override
+    public void onCardClicked(View card) {
+        Log.d("eventLog", "onCardClicked: presenter handles click!");
     }
 }

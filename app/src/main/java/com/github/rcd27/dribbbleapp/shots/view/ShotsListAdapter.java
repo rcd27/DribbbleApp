@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.github.rcd27.dribbbleapp.R;
 import com.github.rcd27.dribbbleapp.shots.data.ShotVisualObject;
+import com.github.rcd27.dribbbleapp.shots.presenter.ShotsPresenter;
 import com.squareup.picasso.Picasso;
 
 public class ShotsListAdapter extends ArrayAdapter<ShotVisualObject> {
