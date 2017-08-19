@@ -30,6 +30,7 @@ public class ShotsPresenterTest {
 
     @Before
     public void setUp() {
+        //TODO FIXME: после поднятия версии Mockito перестал работать.
         MockitoAnnotations.initMocks(this);
 
         shotsPresenter = new ShotsPresenter(interactor, shotsView);
