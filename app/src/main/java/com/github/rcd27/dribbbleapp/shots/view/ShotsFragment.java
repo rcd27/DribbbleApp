@@ -27,8 +27,8 @@ import javax.inject.Inject;
 public class ShotsFragment extends android.support.v4.app.Fragment implements ShotsContract.View {
 
     private SwipeRefreshLayout swipeRefreshLayout;
+    private LinearLayoutManager linearLayoutManager;
     private RecyclerView shotsRecyclerView;
-    //TODO FIXME https://habrahabr.ru/post/334710/
     private ShotsRecyclerViewAdapter shotsRecyclerViewAdapter;
 
     @Inject
@@ -66,8 +66,10 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
         shotsRecyclerViewAdapter = new ShotsRecyclerViewAdapter(picasso,
                 new ArrayList<>(), shotsPresenter);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        shotsRecyclerView.setLayoutManager(llm);
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+
+        shotsRecyclerView.setLayoutManager(linearLayoutManager);
         shotsRecyclerView.setAdapter(shotsRecyclerViewAdapter);
 
         swipeRefreshLayout.setOnRefreshListener(
@@ -86,5 +88,10 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
     public void showError(@NonNull String errorMessage) {
         Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void scrollToBottom() {
+        linearLayoutManager.scrollToPositionWithOffset(0,0);
     }
 }

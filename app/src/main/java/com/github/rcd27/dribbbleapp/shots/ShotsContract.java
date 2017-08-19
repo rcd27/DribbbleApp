@@ -23,6 +23,8 @@ public interface ShotsContract {
 
         void update(@NonNull List<ShotVisualObject> shots);
 
+        void scrollToBottom();
+
     }
 
     interface Presenter {

@@ -25,6 +25,7 @@ public class ShotsPresenter implements ShotsContract.Presenter {
                 .doOnSuccess(view::update)
                 .doOnError(Throwable::printStackTrace)
                 .subscribe();
+        view.scrollToBottom();
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.github.rcd27.dribbbleapp.shots.view;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class ShotsRecyclerViewAdapter
         picasso.load(currentShot.imageUrl)
                 .into(holder.imageView);
         holder.title.setText(currentShot.title);
-        holder.description.setText(currentShot.description);
+        holder.description.setText(Html.fromHtml(currentShot.description));
     }
 
     @Override
