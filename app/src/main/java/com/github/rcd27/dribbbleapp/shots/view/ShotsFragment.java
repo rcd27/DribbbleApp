@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
@@ -18,6 +19,7 @@ import com.github.rcd27.dribbbleapp.shots.ShotsContract;
 import com.github.rcd27.dribbbleapp.shots.data.ShotVisualObject;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,9 +27,9 @@ import javax.inject.Inject;
 public class ShotsFragment extends android.support.v4.app.Fragment implements ShotsContract.View {
 
     private SwipeRefreshLayout swipeRefreshLayout;
-    private ListView shotsListView;
+    private RecyclerView shotsRecyclerView;
     //TODO FIXME https://habrahabr.ru/post/334710/
-    private ShotsListAdapter listAdapter;
+    private ShotsRecyclerViewAdapter shotsRecyclerViewAdapter;
 
     @Inject
     public ShotsContract.Presenter shotsPresenter;
@@ -53,7 +55,7 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
         View view = inflater.inflate(R.layout.swipe_fragment, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
 
-        shotsListView = (ListView) view.findViewById(R.id.shot_list);
+        shotsRecyclerView = (RecyclerView) view.findViewById(R.id.shots_recycler_view);
         return view;
     }
 
@@ -61,8 +63,13 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        listAdapter = new ShotsListAdapter(getContext(), picasso);
-        shotsListView.setAdapter(listAdapter);
+        shotsRecyclerViewAdapter = new ShotsRecyclerViewAdapter(picasso,
+                new ArrayList<>(), shotsPresenter);
+
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        shotsRecyclerView.setLayoutManager(llm);
+        shotsRecyclerView.setAdapter(shotsRecyclerViewAdapter);
+
         swipeRefreshLayout.setOnRefreshListener(
                 () -> shotsPresenter.checkIfOnlineAndUpdateActual());
 
@@ -71,11 +78,7 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
 
     @Override
     public void update(@NonNull List<ShotVisualObject> shots) {
-        listAdapter.clear();
-        for (ShotVisualObject shot : shots) {
-            listAdapter.add(shot);
-            listAdapter.notifyDataSetChanged();
-        }
+        shotsRecyclerViewAdapter.setShots(shots);
         swipeRefreshLayout.setRefreshing(false);
     }
 
