@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Toast;
 
 import com.github.rcd27.dribbbleapp.DribbbleApplication;
@@ -69,8 +71,12 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
         linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
 
+        LayoutAnimationController animationController =
+                AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_fall_down);
+
         shotsRecyclerView.setLayoutManager(linearLayoutManager);
         shotsRecyclerView.setAdapter(shotsRecyclerViewAdapter);
+        shotsRecyclerView.setLayoutAnimation(animationController);
 
         swipeRefreshLayout.setOnRefreshListener(
                 () -> shotsPresenter.checkIfOnlineAndUpdateActual());
@@ -92,6 +98,7 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
 
     @Override
     public void scrollToBottom() {
-        linearLayoutManager.scrollToPositionWithOffset(0,0);
+        linearLayoutManager.scrollToPositionWithOffset(0, 0);
+        shotsRecyclerView.scheduleLayoutAnimation();
     }
 }
