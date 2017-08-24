@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class ShotDataTransferObject {
     @SerializedName("id")
-    public final String id;
+    public final int id;
 
     @SerializedName("title")
     public final String title;
@@ -29,7 +29,7 @@ public class ShotDataTransferObject {
     @SerializedName("isAnimated")
     public final boolean isAnimated;
 
-    public ShotDataTransferObject(String id,
+    public ShotDataTransferObject(int id,
                                   String title,
                                   @Nullable String description,
                                   int width,
