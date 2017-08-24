@@ -4,6 +4,7 @@ package com.github.rcd27.dribbbleapp.shots;
 import android.support.annotation.NonNull;
 
 import com.github.rcd27.dribbbleapp.shots.data.ShotVisualObject;
+import com.github.rcd27.dribbbleapp.shots.view.ShotsRecyclerViewAdapter;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface ShotsContract {
 
         Single<List<ShotVisualObject>> getShots(int forPage, int shotsAmount);
 
+        ShotVisualObject getShotById(int id);
+
     }
 
     interface View {
@@ -25,6 +28,9 @@ public interface ShotsContract {
 
         void scrollToBottom();
 
+        void showShotDetail(ShotsRecyclerViewAdapter.ShotViewHolder holder,
+                            @NonNull ShotVisualObject shotVisualObject);
+
     }
 
     interface Presenter {
@@ -33,7 +39,7 @@ public interface ShotsContract {
 
         void checkIfOnlineAndUpdateActual();
 
-        void onCardClicked(android.view.View card);
+        void onCardClicked(ShotsRecyclerViewAdapter.ShotViewHolder holder, int shotId);
     }
 
     interface Interactor {
@@ -41,6 +47,8 @@ public interface ShotsContract {
         Single<List<ShotVisualObject>> getFithtyShotsForOnePage();
 
         boolean isOnline();
+
+        ShotVisualObject getShotFromRepository(int id);
 
     }
 }

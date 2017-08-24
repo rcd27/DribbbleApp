@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,5 +101,24 @@ public class ShotsFragment extends android.support.v4.app.Fragment implements Sh
     public void scrollToBottom() {
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
         shotsRecyclerView.scheduleLayoutAnimation();
+    }
+
+    @Override
+    public void showShotDetail(ShotsRecyclerViewAdapter.ShotViewHolder holder,
+                               @NonNull ShotVisualObject shotVisualObject) {
+        ShotDetailFragment shotDetailFragment = ShotDetailFragment.newInstance(shotVisualObject);
+        shotDetailFragment.setSharedElementEnterTransition(new ShotDetailsTransition());
+        shotDetailFragment.setEnterTransition(new Fade());
+        setExitTransition(new Fade());
+        shotDetailFragment.setSharedElementReturnTransition(new ShotDetailsTransition());
+
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .addSharedElement(holder.imageView, "shotImage")
+                .replace(R.id.shots_fragment_container, shotDetailFragment)
+                .addToBackStack(null)
+                .commit();
+
+        //TODO FT2: запоминать позицию выбранного шота и скроллить к ней в onBackPressed
     }
 }

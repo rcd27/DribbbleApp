@@ -2,6 +2,7 @@ package com.github.rcd27.dribbbleapp.shots.view;
 
 
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -36,18 +37,23 @@ public class ShotsRecyclerViewAdapter
     public ShotViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View card = inflater.inflate(R.layout.list_item_cardview, parent, false);
-        card.setOnClickListener(presenter::onCardClicked);
 
         return new ShotViewHolder(card);
     }
 
     @Override
-    public void onBindViewHolder(ShotViewHolder holder, int position) {
+    public void onBindViewHolder(final ShotViewHolder viewHolder, int position) {
         ShotVisualObject currentShot = shots.get(position);
+        viewHolder.id = currentShot.id;
         picasso.load(currentShot.imageUrl)
-                .into(holder.imageView);
-        holder.title.setText(currentShot.title);
-        holder.description.setText(Html.fromHtml(currentShot.description));
+                .into(viewHolder.imageView);
+        viewHolder.title.setText(currentShot.title);
+        viewHolder.description.setText(Html.fromHtml(currentShot.description));
+
+        ViewCompat.setTransitionName(viewHolder.imageView,String.valueOf(position)+"_image");
+        viewHolder.imageView.setOnClickListener(view -> {
+            presenter.onCardClicked(viewHolder, shots.get(position).id);
+        });
     }
 
     @Override
@@ -61,6 +67,8 @@ public class ShotsRecyclerViewAdapter
     }
 
     public class ShotViewHolder extends RecyclerView.ViewHolder {
+        int id;
+
         ImageView imageView;
         TextView title;
         TextView description;

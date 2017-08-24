@@ -9,14 +9,17 @@ import android.support.annotation.Nullable;
 
 public class ShotVisualObject {
 
+    public final int id;
     public final String imageUrl;
     public final String title;
     @NonNull
     public final String description;
 
-    public ShotVisualObject(@NonNull String imageUrl,
+    public ShotVisualObject(int id,
+                            @NonNull String imageUrl,
                             @NonNull String title,
                             @Nullable String description) {
+        this.id = id;
         this.imageUrl = imageUrl;
         this.title = title;
 

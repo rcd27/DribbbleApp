@@ -31,4 +31,9 @@ public class ShotsInteractor implements ShotsContract.Interactor {
     public boolean isOnline() {
         return connectivityUtils.isOnline();
     }
+
+    @Override
+    public ShotVisualObject getShotFromRepository(int id) {
+        return model.getShotById(id);
+    }
 }

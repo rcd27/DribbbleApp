@@ -1,10 +1,8 @@
 package com.github.rcd27.dribbbleapp.shots.presenter;
 
 
-import android.util.Log;
-import android.view.View;
-
 import com.github.rcd27.dribbbleapp.shots.ShotsContract;
+import com.github.rcd27.dribbbleapp.shots.view.ShotsRecyclerViewAdapter;
 
 public class ShotsPresenter implements ShotsContract.Presenter {
 
@@ -38,7 +36,7 @@ public class ShotsPresenter implements ShotsContract.Presenter {
     }
 
     @Override
-    public void onCardClicked(View card) {
-        Log.d("eventLog", "onCardClicked: presenter handles click!");
+    public void onCardClicked(ShotsRecyclerViewAdapter.ShotViewHolder holder, int shotId) {
+        view.showShotDetail(holder, shotsInteractor.getShotFromRepository(shotId));
     }
 }
