@@ -24,11 +24,15 @@ public class RequiredShotsMapper
         for (ShotDataTransferObject shotDto : shotDataTransferObjects) {
             if (!shotDto.isAnimated) {
                 if (shotDto.images.get(HIDPI) != null) {
-                    result.add(new ShotVisualObject(shotDto.images.get(HIDPI),
+                    result.add(new ShotVisualObject(
+                            shotDto.id,
+                            shotDto.images.get(HIDPI),
                             shotDto.title,
                             shotDto.description));
                 } else {
-                    result.add(new ShotVisualObject(shotDto.images.get(NORMAL),
+                    result.add(new ShotVisualObject(
+                            shotDto.id,
+                            shotDto.images.get(NORMAL),
                             shotDto.title,
                             shotDto.description));
                 }
